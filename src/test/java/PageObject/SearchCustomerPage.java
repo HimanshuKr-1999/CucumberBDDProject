@@ -2,6 +2,7 @@ package PageObject;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -53,6 +54,37 @@ public class SearchCustomerPage {
 		
 		searchBtn.click();
 		
+	}
+	
+	public boolean searchCustomerByEmail(String email)
+	{
+		boolean found = false;
+
+		//total no. of rows in a grid
+		int ttlRows = tableRows.size();
+
+
+		//total no. of columns
+		//int ttlColumns = tableColumns.size();
+
+		for(int i=1;i<=ttlRows;i++)//to iterate all the rows of the grid
+		{
+			System.out.println("Searching row:" +i );
+
+			WebElement webElementEmail = Ldriver.findElement(By.xpath("//table[@id='customers-grid']//tbody/tr[" + i  + "]/td[2]"));
+			String actualEmailAdd = webElementEmail.getText();
+			System.out.println(actualEmailAdd);
+
+			if(actualEmailAdd.equals(email))
+			{
+				found=true;
+			}
+
+
+		}
+
+		return found;
+
 	}
 
 

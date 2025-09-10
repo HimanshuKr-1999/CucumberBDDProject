@@ -8,15 +8,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
 import PageObject.AddnewCustomerPage;
+import PageObject.SearchCustomerPage;
 import PageObject.loginPage;
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class StepDef {
+public class StepDef extends BaseClass {
 	
-	public WebDriver driver;
-	public loginPage LoginPg;
-	public AddnewCustomerPage addNewCustPg;
+	
 	
 	@Given("User launches chrome browser")
 	public void user_launches_chrome_browser() {
@@ -25,6 +24,7 @@ public class StepDef {
 		driver.manage().window().maximize();
 		LoginPg = new loginPage(driver);
 		addNewCustPg= new AddnewCustomerPage(driver);
+		searchNewCustPg = new SearchCustomerPage(driver);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	}
 
@@ -127,7 +127,7 @@ public class StepDef {
 
 	@When("User enter customer info")
 	public void user_enter_customer_info() {
-		addNewCustPg.enterEmail("hellowEmailId123" + "@gmail.com");     //generateEmailId()
+		addNewCustPg.enterEmail(GenerateEmailId() + "@gmail.com");     //generateEmailId()
 		addNewCustPg.enterPassword("test1");
 		addNewCustPg.enterFirstName("Prachi");
 		addNewCustPg.enterLastName("Gupta");
@@ -163,6 +163,34 @@ public class StepDef {
 
 		}
 
+	}
+	
+	////////////////////////////////////////////SEARCH CUSGTOMER///////////////////////////////////////////////
+	
+	@When("Enter customer EMail")
+	public void enter_customer_e_mail() {
+		searchNewCustPg.enterEmailAdd("arthur_holmes@nopCommerce.com");
+	  
+	}
+	
+	@When("click on search button")
+	public void click_on_search_button() {
+	   searchNewCustPg.clickOnSearchButton();
+	}
+
+
+	@Then("User should get the Email in search result table")
+	public void user_should_get_the_email_in_search_result_table() {
+		String ExpectedEmail= "arthur_holmes@nopCommerce.com";
+		
+		Assert.assertTrue(searchNewCustPg.searchCustomerByEmail(ExpectedEmail));
+		
+//		if(searchNewCustPg.searchCustomerByEmail(ExpectedEmail)==true) {
+//			Assert.assertTrue(true);
+//		}
+//		else
+//			Assert.assertTrue(false);
+	  
 	}
 
 

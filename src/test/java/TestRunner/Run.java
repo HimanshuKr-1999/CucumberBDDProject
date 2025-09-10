@@ -8,7 +8,7 @@ import io.cucumber.testng.CucumberOptions;
 
 
 @CucumberOptions(tags="", features={".\\Features\\Customer.feature"},
-glue= {"StepDefination"},
+glue= {"StepDefination"}, dryRun=false,
 plugin= {"pretty","html:target/htmlreport1.html" , "pretty","json:target/JSONreport1.json"})
 
 
