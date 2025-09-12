@@ -1,5 +1,7 @@
 Feature: Login
 
+
+@Sanity
 Scenario:
 Successfull Login with valid credentials
 Given User launches chrome browser
@@ -11,6 +13,8 @@ When user clicks on Log out link
 Then Page Title should be "nopCommerce demo store. Login"
 Then close browser
 
+
+@Regression
 Scenario Outline:
 Successfull Login with valid credentials DDT
 Given User launches chrome browser

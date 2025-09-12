@@ -7,8 +7,9 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 
-@CucumberOptions(tags="", features={".\\Features\\Customer.feature"},
-glue= {"StepDefination"}, dryRun=false,
+@CucumberOptions( features={".\\Features\\Customer.feature",".\\Features\\LoginFeature.feature"},
+glue= {"StepDefination"}, dryRun=false,tags="@Sanity and @Regression",
+
 plugin= {"pretty","html:target/htmlreport1.html" , "pretty","json:target/JSONreport1.json"})
 
 

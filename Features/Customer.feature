@@ -10,7 +10,7 @@ And User enters Valid Email as "admin@yourstore.com" and Valid Password as "admi
 And User clicks on Login
 Then User can view Dashboard
 
-
+@Sanity @Regression
 Scenario:
 Add new Customer
 
@@ -24,7 +24,7 @@ And click on Save button
 Then User can view confirmation message "The new customer has been added successfully." 
 And close browser
 
-
+@Regression
 Scenario:
 Search Customer By email
 
